@@ -5,9 +5,9 @@ exports.seed = function(knex) {
     .then(function() {
       // Inserts seed entries
       return knex("table_name").insert([
-        { resourcesName: "screwdriver" },
-        { resourcesName: "battery" },
-        { resourcesName: "can of compressed air" }
+        { resourcesName: "screwdriver" }, // 1 and 2
+        { resourcesName: "battery" }, // 1
+        { resourcesName: "can of compressed air" } // 2
       ]);
     });
 };
