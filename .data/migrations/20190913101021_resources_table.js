@@ -6,11 +6,18 @@ exports.up = function(knex) {
       .notNullable()
       .unique(); // Name is required and unique
     column.string("descripton"); // description is not required
-    column.integer("tasks_id").notNullable(); //Used to join to tasks table
     column
       .boolean("completed")
       .notNullable()
       .defaultTo(false); // Completed is required and default set to false
+    // Forgien key
+    column
+      .integer("tasks_id")
+      .unsigned()
+      .references("id")
+      .inTable("tasks")
+      .onDelete("CASCADE") // if the PK record is deleted
+      .onUpdate("CASCADE"); // if the PK value updates
   });
 };
 
