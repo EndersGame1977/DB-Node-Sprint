@@ -20,5 +20,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.dropTableIfExists("projects-resources");
+  return knex.schema.dropTableIfExists("projects-resources");
 };
