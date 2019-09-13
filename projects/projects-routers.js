@@ -37,6 +37,17 @@ router.get("/projects/:id/tasks", (req, res) => {
     });
 });
 
+router.post("/projects", (req, res) => {
+  const projectsData = req.body;
+  Projects.addProjects(projectsData)
+    .then(project => {
+      res.status(200).json(project);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+});
+
 module.exports = router;
 
 // [ ] adding resources.

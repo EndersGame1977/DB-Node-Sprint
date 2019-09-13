@@ -3,7 +3,8 @@ const db = require("../.data/db-config.js");
 module.exports = {
   findAllProjects,
   findAllResources,
-  findAllTasksForProjectID
+  findAllTasksForProjectID,
+  addProjects
 };
 
 function findAllProjects() {
@@ -26,4 +27,8 @@ function findAllTasksForProjectID(id) {
       "tasks.completed"
     )
     .orderBy("step");
+}
+
+function addProjects(projectsData) {
+  return db("projects").insert(projectsData);
 }
