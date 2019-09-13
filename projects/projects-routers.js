@@ -39,8 +39,20 @@ router.get("/tasks", (req, res) => {
 // Retrieving a list of tasks. The list of tasks should include the project name and project description.
 router.get("/projects/:id/tasks", (req, res) => {
   const { id } = req.params;
+  //const test = res.body;
+
   Projects.findAllTasksForProjectID(id)
     .then(tasks => {
+      for (let task in tasks) {
+        //console.log(task);
+
+        if (tasks[task].completed === 1) {
+          tasks[task].completed = true;
+        } else if (tasks[task].completed === 0) {
+          tasks[task].completed = false;
+        }
+        console.log(tasks[task].completed);
+      }
       res.status(200).json(tasks);
     })
     .catch(err => {
@@ -72,6 +84,7 @@ router.post("/resources", (req, res) => {
     });
 });
 
+// Adding tasks
 router.post("/projects/:id/tasks", (req, res) => {
   const tasksData = req.body;
   const { id } = req.params;
@@ -86,5 +99,4 @@ router.post("/projects/:id/tasks", (req, res) => {
 
 module.exports = router;
 
-// [ ] adding tasks.
 // [ ] When returning project or task information, the completed property should be true or false.
