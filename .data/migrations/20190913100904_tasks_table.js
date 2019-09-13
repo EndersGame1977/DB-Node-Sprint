@@ -3,11 +3,18 @@ exports.up = function(knex) {
     column.increments(); // Unique ID
     column.string("description").notNullable(); // Description is required
     column.string("notes"); // Notes is not required
-    column.integer("projects_id").notNullable(); //Used to join to projects table
     column
       .boolean("completed")
       .notNullable()
       .defaultTo(false); // Completed is required and default set to false
+    // Forgien key
+    column
+      .integer("projects_id")
+      .unsigned()
+      .references("id")
+      .inTable("projects")
+      .onDelete("CASCADE") // if the PK record is deleted
+      .onUpdate("CASCADE"); // if the PK value updates
   });
 };
 
