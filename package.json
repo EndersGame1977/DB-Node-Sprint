@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/EndersGame1977/DB-Node-Sprint/issues"
   },
-  "homepage": "https://github.com/EndersGame1977/DB-Node-Sprint#readme"
+  "homepage": "https://github.com/EndersGame1977/DB-Node-Sprint#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.19.4",
+    "sqlite3": "^4.1.0"
+  }
 }
