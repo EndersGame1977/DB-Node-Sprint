@@ -3,9 +3,11 @@ const db = require("../.data/db-config.js");
 module.exports = {
   findAllProjects,
   findAllResources,
+  findAllTasks,
   findAllTasksForProjectID,
   addProjects,
-  addResources
+  addResources,
+  addTasksForProjectID
 };
 
 function findAllProjects() {
@@ -14,6 +16,10 @@ function findAllProjects() {
 
 function findAllResources() {
   return db("resources");
+}
+
+function findAllTasks() {
+  return db("tasks");
 }
 
 function findAllTasksForProjectID(id) {
@@ -36,4 +42,17 @@ function addProjects(projectsData) {
 
 function addResources(resourcesData) {
   return db("resources").insert(resourcesData);
+}
+
+function addTasksForProjectID(id, tasksData) {
+  return db("tasks")
+    .join("projects", "tasks.projects_id", "projects.id")
+    .where("tasks.projects_id", id)
+    .insert(tasksData)
+    .select(
+      "projects.projectsName",
+      "tasks.step",
+      "tasks.description",
+      "tasks.completed"
+    );
 }

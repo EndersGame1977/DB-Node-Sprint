@@ -25,6 +25,17 @@ router.get("/resources", (req, res) => {
       res.status(500).json({ message: err.message });
     });
 });
+
+router.get("/tasks", (req, res) => {
+  Projects.findAllTasks()
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+});
+
 // Retrieving a list of tasks. The list of tasks should include the project name and project description.
 router.get("/projects/:id/tasks", (req, res) => {
   const { id } = req.params;
@@ -53,6 +64,18 @@ router.post("/projects", (req, res) => {
 router.post("/resources", (req, res) => {
   const resourcesData = req.body;
   Projects.addResources(resourcesData)
+    .then(resource => {
+      res.status(200).json(resource);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+});
+
+router.post("/projects/:id/tasks", (req, res) => {
+  const tasksData = req.body;
+  const { id } = req.params;
+  Projects.addTasksForProjectID(id, tasksData)
     .then(resource => {
       res.status(200).json(resource);
     })
