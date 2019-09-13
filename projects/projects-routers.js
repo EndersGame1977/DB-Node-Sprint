@@ -37,6 +37,7 @@ router.get("/projects/:id/tasks", (req, res) => {
     });
 });
 
+// Adding projects
 router.post("/projects", (req, res) => {
   const projectsData = req.body;
   Projects.addProjects(projectsData)
@@ -48,12 +49,19 @@ router.post("/projects", (req, res) => {
     });
 });
 
+// Adding resources.
+router.post("/resources", (req, res) => {
+  const resourcesData = req.body;
+  Projects.addResources(resourcesData)
+    .then(resource => {
+      res.status(200).json(resource);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+});
+
 module.exports = router;
 
-// [ ] adding resources.
-
-// [ ] adding projects.
-
 // [ ] adding tasks.
-
 // [ ] When returning project or task information, the completed property should be true or false.

@@ -4,7 +4,8 @@ module.exports = {
   findAllProjects,
   findAllResources,
   findAllTasksForProjectID,
-  addProjects
+  addProjects,
+  addResources
 };
 
 function findAllProjects() {
@@ -31,4 +32,8 @@ function findAllTasksForProjectID(id) {
 
 function addProjects(projectsData) {
   return db("projects").insert(projectsData);
+}
+
+function addResources(resourcesData) {
+  return db("resources").insert(resourcesData);
 }
