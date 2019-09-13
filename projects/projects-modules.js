@@ -1,9 +1,14 @@
 const db = require("../.data/db-config.js");
 
 module.exports = {
-  find
+  findAllProjects,
+  findAllResources
 };
 
-function find() {
+function findAllProjects() {
   return db("projects");
+}
+
+function findAllResources() {
+  return db("resources");
 }
