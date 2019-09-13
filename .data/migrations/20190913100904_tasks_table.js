@@ -3,6 +3,7 @@ exports.up = function(knex) {
     column.increments(); // Unique ID
     column.string("description").notNullable(); // Description is required
     column.string("notes"); // Notes is not required
+    column.integer("step").notNullable();
     column
       .boolean("completed")
       .notNullable()
