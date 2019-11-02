@@ -19,7 +19,7 @@
   "homepage": "https://github.com/EndersGame1977/DB-Node-Sprint#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "knex": "^0.19.4",
+    "knex": "^0.19.5",
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
